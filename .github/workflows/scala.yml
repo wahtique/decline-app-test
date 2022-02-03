@@ -28,7 +28,7 @@ jobs:
         shell: bash
       - run: sbt nativeImage
         shell: bash
-      - run: ls 
+      - run: tree
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
