@@ -13,36 +13,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         include:
-          - os: macOS-latest
-            uploaded_filename: decline-app-test-x86_64-apple-darwin
-            local_path: decline-app-test/target/native-image/decline-app-test
           - os: ubuntu-latest
             uploaded_filename: decline-app-test-x86_64-pc-linux
             local_path: decline-app-test/target/native-image/decline-app-test
-          - os: windows-latest
-            uploaded_filename: decline-app-test-x86_64-pc-win32.exe
-            local_path: decline-app-test\target\native-image\decline-app-test.exe
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v13
+        with: 
+          java-version: graalvm@22.0.0
       - run: git fetch --tags || true
-      - run: sbt root/nativeImageRunAgent
+      - run: sbt nativeImageRunAgent
         shell: bash
-        if: ${{ matrix.os != 'windows-latest' }}
-      - run: sbt root/nativeImage
+      - run: sbt nativeImage
         shell: bash
-        if: ${{ matrix.os != 'windows-latest' }}
       - run: echo $(pwd)
         shell: bash
-      - name: sbt test
-        shell: cmd
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: >-
-          "C:\Program Files (x86)\Microsoft Visual
-          Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" && sbt
-          root/nativeImage
       - uses: actions/upload-artifact@v2
         with:
           path: ${{ matrix.local_path }}
