@@ -17,7 +17,7 @@ jobs:
         include:
           - os: ubuntu-latest
             uploaded_filename: decline-app-test-x86_64-pc-linux
-            local_path: decline-app-test/target/native-image/decline-app-test
+            local_path: target/native-image/decline-app-test
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v13
@@ -28,7 +28,7 @@ jobs:
         shell: bash
       - run: sbt nativeImage
         shell: bash
-      - run: echo $(pwd)
+      - run: ls 
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
