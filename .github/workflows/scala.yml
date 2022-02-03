@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v13
       - run: git fetch --tags || true
-      - run: sbt nativeImage
+      - run: sbt decline-app-test/nativeImage
         shell: bash
         if: ${{ matrix.os != 'windows-latest' }}
       - run: echo $(pwd)
@@ -39,7 +39,7 @@ jobs:
         run: >-
           "C:\Program Files (x86)\Microsoft Visual
           Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" && sbt
-          nativeImage
+          decline-app-test/nativeImage
       - uses: actions/upload-artifact@v2
         with:
           path: ${{ matrix.local_path }}
