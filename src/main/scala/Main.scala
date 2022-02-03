@@ -3,8 +3,8 @@ package com.github.wahtique
 import cats.implicits._
 import com.monovore.decline._
 
-object HelloWorld extends CommandApp(
-  name = "hello-world",
+object DeclineTestApp extends CommandApp(
+  name = "decline-app-test",
   header = "Says hello !",
   main = {
     val userOpt =

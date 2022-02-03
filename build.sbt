@@ -9,8 +9,7 @@ lazy val root = project
     scalaVersion := scala3Version,
 
     // for native image
-    Compile / mainClass := Some("com.github.wahtique.HelloWorld"),
-    nativeImageVersion := "21.1.0",
+    Compile / mainClass := Some("com.github.wahtique.DeclineTestApp"),
     nativeImageOptions += s"-H:ReflectionConfigurationFiles=${target.value / "native-image-configs" / "reflect-config.json"}",
     nativeImageOptions += s"-H:ConfigurationFileDirectories=${target.value / "native-image-configs" }",
     nativeImageOptions += "-H:+JNI"
