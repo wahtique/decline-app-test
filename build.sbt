@@ -2,7 +2,6 @@ val scala3Version = "3.1.1"
 
 lazy val root = project
   .in(file("."))
-  .enablePlugins(NativeImagePlugin)
   .settings(
     name := "decline-app-test",
     version := "0.1.0-SNAPSHOT",
@@ -15,6 +14,7 @@ lazy val root = project
     nativeImageOptions += s"-H:ConfigurationFileDirectories=${target.value / "native-image-configs" }",
     nativeImageOptions += "-H:+JNI"
   )
+  .enablePlugins(NativeImagePlugin)
 
 libraryDependencies ++= Seq(
   "com.monovore" %% "decline" % "2.2.0",
