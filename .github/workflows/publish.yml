@@ -9,7 +9,7 @@ on:
     types: [published]
 
 env: 
-  project_name: decline-app-test
+  PROJECT_NAME: decline-app-test
 
 jobs:
 
@@ -31,11 +31,11 @@ jobs:
         os: [macOS-latest, ubuntu-latest]
         include:
           - os: macOS-latest
-            uploaded_filename: ${{ env.project_name }}-x86_64-apple-darwin
-            local_path: target/native-image/${{ env.project_name }}
+            uploaded_filename: $PROJECT_NAME-x86_64-apple-darwin
+            local_path: target/native-image/$PROJECT_NAME
           - os: ubuntu-latest
-            uploaded_filename: ${{ env.project_name }}-x86_64-pc-linux
-            local_path: target/native-image/${{ env.project_name }}
+            uploaded_filename: $PROJECT_NAME-x86_64-pc-linux
+            local_path: target/native-image/$PROJECT_NAME
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v13
@@ -68,8 +68,8 @@ jobs:
     needs: test
     runs-on: windows-latest
     env:
-      uploaded_filename: ${{ env.project_name }}-x86_64-pc-win32.exe
-      local_path: D:\a\${{ env.project_name }}\${{ env.project_name }}\target\native-image\${{ env.project_name }}
+      uploaded_filename: $PROJECT_NAME-x86_64-pc-win32.exe
+      local_path: D:\a\$PROJECT_NAME\$PROJECT_NAME\target\native-image\$PROJECT_NAME
     steps: 
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v13
